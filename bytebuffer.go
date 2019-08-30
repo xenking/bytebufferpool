@@ -45,6 +45,9 @@ func (b *ByteBuffer) ReadFrom(r io.Reader) (int64, error) {
 		nn, err := r.Read(p[n:])
 		n += int64(nn)
 		if err != nil {
+			if n < 0 {
+				n = 0
+			}
 			b.B = p[:n]
 			n -= nStart
 			if err == io.EOF {
