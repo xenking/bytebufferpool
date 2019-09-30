@@ -1,6 +1,9 @@
 package bytebufferpool
 
-import "io"
+import (
+	"errors"
+	"io"
+)
 
 // ByteBuffer provides byte buffer, which can be used for minimizing
 // memory allocations.
@@ -10,7 +13,7 @@ import "io"
 //
 // Use Get for obtaining an empty byte buffer.
 type ByteBuffer struct {
-
+	off int64
 	// B is a byte buffer to use in append-like workloads.
 	// See example code for details.
 	B []byte
@@ -21,13 +24,26 @@ func (b *ByteBuffer) Len() int {
 	return len(b.B)
 }
 
-// ReadAt implements io.ReaderAt interface.
-func (b *ByteBuffer) ReadAt(p []byte, off int64) (n int, err error) {
-	if int64(len(b.B)) >= off {
+func (b *ByteBuffer) Read(p []byte) (int, error) {
+	if b.off >= int64(len(b.B)) {
 		return 0, io.EOF
 	}
+	n := copy(p, b.B[b.off:])
+	b.off += int64(n)
+	return n, nil
+}
+
+// ReadAt implements io.ReaderAt interface.
+func (b *ByteBuffer) ReadAt(p []byte, off int64) (n int, err error) {
+	if off < 0 {
+		return 0, errors.New("ReadAt: negative offset")
+	}
+	if off >= int64(len(b.B)) {
+		return 0, io.EOF
+	}
+
 	n = copy(p, b.B[off:])
-	if n == 0 {
+	if n < len(p) {
 		err = io.EOF
 	}
 
@@ -124,4 +140,5 @@ func (b *ByteBuffer) String() string {
 // Reset makes ByteBuffer.B empty.
 func (b *ByteBuffer) Reset() {
 	b.B = b.B[:0]
+	b.off = 0
 }
