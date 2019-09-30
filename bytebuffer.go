@@ -21,6 +21,19 @@ func (b *ByteBuffer) Len() int {
 	return len(b.B)
 }
 
+// ReadAt implements io.ReaderAt interface.
+func (b *ByteBuffer) ReadAt(p []byte, off int64) (n int, err error) {
+	if int64(len(b.B)) >= off {
+		return 0, io.EOF
+	}
+	n = copy(p, b.B[off:])
+	if n == 0 {
+		err = io.EOF
+	}
+
+	return
+}
+
 // ReadFrom implements io.ReaderFrom.
 //
 // The function appends all the data read from r to b.
