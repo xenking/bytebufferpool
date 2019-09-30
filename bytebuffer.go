@@ -33,6 +33,14 @@ func (b *ByteBuffer) Read(p []byte) (int, error) {
 	return n, nil
 }
 
+func (b *ByteBuffer) Seek(offset int64, whence int) (int64, error) {
+	if whence == io.SeekStart {
+		b.off = 0
+	}
+	b.off += offset
+	return b.off, nil
+}
+
 // ReadAt implements io.ReaderAt interface.
 func (b *ByteBuffer) ReadAt(p []byte, off int64) (n int, err error) {
 	if off < 0 {
