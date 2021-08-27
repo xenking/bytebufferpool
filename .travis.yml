@@ -1,15 +1,11 @@
 language: go
-
 go:
-  - 1.6
+  - 1.15.x
+  - 1.16.x
+  - 1.17.x
 
 script:
-  # build test for supported platforms
-  - GOOS=linux go build
-  - GOOS=darwin go build
-  - GOOS=freebsd go build
-  - GOOS=windows go build
-  - GOARCH=386 go build
+  - go test -v -race -coverprofile=coverage.txt -covermode=atomic ./...
 
-  # run tests on a standard platform
-  - go test -v ./...
+after_success:
+  - bash <(curl -s https://codecov.io/bash)

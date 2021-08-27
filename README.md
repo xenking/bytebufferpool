@@ -1,6 +1,7 @@
-[![Build Status](https://travis-ci.org/valyala/bytebufferpool.svg)](https://travis-ci.org/valyala/bytebufferpool)
-[![GoDoc](https://godoc.org/github.com/xenking/bytebufferpool?status.svg)](http://godoc.org/github.com/xenking/bytebufferpool)
-[![Go Report](http://goreportcard.com/badge/valyala/bytebufferpool)](http://goreportcard.com/report/valyala/bytebufferpool)
+[![Build Status](https://app.travis-ci.com/xenking/bytebufferpool.svg?branch=master)](https://app.travis-ci.com/xenking/bytebufferpool)
+[![Go Reference](https://pkg.go.dev/badge/github.com/xenking/bytebufferpool.svg)](https://pkg.go.dev/github.com/xenking/bytebufferpool)
+[![Go Report Card](https://goreportcard.com/badge/github.com/xenking/bytebufferpool)](https://goreportcard.com/report/github.com/xenking/bytebufferpool)
+[![codecov](https://codecov.io/gh/xenking/bytebufferpool/branch/master/graph/badge.svg?token=WH2SGawBHl)](https://codecov.io/gh/xenking/bytebufferpool)
 
 # bytebufferpool
 
