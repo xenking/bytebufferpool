@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/valyala/bytebufferpool.svg)](https://travis-ci.org/valyala/bytebufferpool)
-[![GoDoc](https://godoc.org/github.com/valyala/bytebufferpool?status.svg)](http://godoc.org/github.com/valyala/bytebufferpool)
+[![GoDoc](https://godoc.org/github.com/xenking/bytebufferpool?status.svg)](http://godoc.org/github.com/xenking/bytebufferpool)
 [![Go Report](http://goreportcard.com/badge/valyala/bytebufferpool)](http://goreportcard.com/report/valyala/bytebufferpool)
 
 # bytebufferpool
